@@ -1,0 +1,31 @@
+{
+  "name": "standard-markdown",
+  "version": "1.0.0",
+  "description": "Check that all the JavaScript in your markdown files is using standard™ style",
+  "main": "index.js",
+  "bin": "cli.js",
+  "scripts": {
+    "test": "node tests/index.js | tap-spec"
+  },
+  "repository": "https://github.com/zeke/standard-markdown",
+  "keywords": [
+    "standard",
+    "lint",
+    "linter",
+    "markdown",
+    "code",
+    "snippet",
+    "javascript"
+  ],
+  "author": "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^3.1.1",
+    "lodash.range": "^3.1.5",
+    "standard-engine": "^4.1.1"
+  },
+  "devDependencies": {
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
+  }
+}
