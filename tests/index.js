@@ -5,7 +5,7 @@ const standardMarkdown = require('..')
 const text = fs.readFileSync(path.join(__dirname, 'fixture.md'), 'utf8')
 
 test('standardMarkdown', function (t) {
-  standardMarkdown(text, function (err, results) {
+  standardMarkdown.lintText(text, function (err, results) {
     // console.error(JSON.stringify(results, null, 2))
 
     t.equal(results.length, 6, 'returns six linting errors')

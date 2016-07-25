@@ -6,7 +6,9 @@ const async = require('async')
 const blockOpener = /^```(js|javascript)$/mg
 const blockCloser = /^```$/mg
 
-module.exports = function (text, done) {
+let standardMarkdown = module.exports = {}
+
+standardMarkdown.lintText = function (text, done) {
   const blocks = extractCodeBlocks(text)
   async.map(
     blocks,
@@ -23,11 +25,11 @@ module.exports = function (text, done) {
 function extractCodeBlocks(text) {
   const lines = text.split('\n')
   const matches = text.match(blockOpener) || []
-  return range(matches.length).map(i => extractBlock(lines, i))
+  return range(matches.length).map(index => extractCodeBlock(lines, index))
 }
 
 // Seek out the nth block of javascript code in the file
-function extractBlock(lines, targetIndex) {
+function extractCodeBlock(lines, targetIndex) {
   let currentIndex = 0
   let insideBlock = false
   return lines
