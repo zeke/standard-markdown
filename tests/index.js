@@ -2,7 +2,7 @@ const test = require('tape')
 const fs = require('fs')
 const path = require('path')
 const standardMarkdown = require('..')
-const text = fs.readFileSync(path.join(__dirname, 'fixture.md'), 'utf8')
+const text = fs.readFileSync(path.join(__dirname, 'fixtures/index.md'), 'utf8')
 
 test('standardMarkdown', function (t) {
   standardMarkdown.lintText(text, function (err, results) {
