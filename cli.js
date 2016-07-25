@@ -3,8 +3,10 @@
 const globby = require('globby')
 const path = require('path')
 const lintFiles = require('.').lintFiles
-const cwd = process.cwd()
+const cwd = process.argv.slice(2)[0] || process.cwd()
 let patterns = [
+  '**/*.md',
+  '**/*.markdown',
   '!**/.git/**',
   '!**/coverage/**',
   '!**/dist/**',
@@ -13,13 +15,6 @@ let patterns = [
   '!*.min.js',
   '!bundle.js'
 ]
-const userPattern = process.argv.slice(2)[0]
-
-if (userPattern) {
-  patterns.unshift(userPattern)
-} else {
-  patterns.unshift('**/*.md', '**/*.markdown')
-}
 
 const files = globby.sync(patterns, {cwd: cwd})
   .map(file => path.resolve(cwd, file))
