@@ -51,7 +51,7 @@ function extractCodeBlock (lines, targetIndex) {
   return lines
     .map(line => {
       // standard doesn't like trailing whitespace
-      line = line.trim()
+      line = line.replace(/\s*$/, '')
 
       if (line.match(blockOpener)) {
         if (currentIndex === targetIndex) {
