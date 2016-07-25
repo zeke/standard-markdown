@@ -1,5 +1,5 @@
-const eslint = require('eslint')
 const standard = require('standard')
+const fs = require('fs')
 const range = require('lodash.range')
 const flatten = require('lodash.flatten')
 const async = require('async')
@@ -12,8 +12,8 @@ standardMarkdown.lintText = function (text, done) {
   const blocks = extractCodeBlocks(text)
   async.map(
     blocks,
-    function(block, callback) { return standard.lintText(block, callback) },
-    function(err, results) {
+    function (block, callback) { return standard.lintText(block, callback) },
+    function (err, results) {
       if (err) return done(err)
       results = results.map(r => r.results.map(res => res.messages))
       results = flatten(flatten(results))
@@ -22,14 +22,30 @@ standardMarkdown.lintText = function (text, done) {
   )
 }
 
-function extractCodeBlocks(text) {
+standardMarkdown.lintFiles = function (files, done) {
+  async.map(
+    files,
+    function (file, callback) {
+      standardMarkdown.lintText(fs.readFileSync(file, 'utf8'), function (err, errors) {
+        if (err) return callback(err)
+        return callback(null, {file: file, errors: errors})
+      })
+    },
+    function (err, results) {
+      if (err) return done(err)
+      return done(null, results)
+    }
+  )
+}
+
+function extractCodeBlocks (text) {
   const lines = text.split('\n')
   const matches = text.match(blockOpener) || []
   return range(matches.length).map(index => extractCodeBlock(lines, index))
 }
 
 // Seek out the nth block of javascript code in the file
-function extractCodeBlock(lines, targetIndex) {
+function extractCodeBlock (lines, targetIndex) {
   let currentIndex = 0
   let insideBlock = false
   return lines

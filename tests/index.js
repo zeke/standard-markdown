@@ -2,10 +2,11 @@ const test = require('tape')
 const fs = require('fs')
 const path = require('path')
 const standardMarkdown = require('..')
-const text = fs.readFileSync(path.join(__dirname, 'fixtures/index.md'), 'utf8')
+const dirty = fs.readFileSync(path.join(__dirname, 'fixtures/dirty.md'), 'utf8')
 
 test('standardMarkdown', function (t) {
-  standardMarkdown.lintText(text, function (err, results) {
+  standardMarkdown.lintText(dirty, function (err, results) {
+    if (err) throw (err)
     // console.error(JSON.stringify(results, null, 2))
 
     t.equal(results.length, 6, 'returns six linting errors')
