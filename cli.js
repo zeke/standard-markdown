@@ -23,7 +23,8 @@ lintFiles(files, function (err, results) {
 
   results.forEach(result => {
     result.errors.forEach(error => {
-      console.log(`${result.file}:${error.line}:${error.column}: ${error.message}`)
+      let filepath = path.relative(cwd, result.file)
+      console.log(`${filepath}:${error.line}:${error.column}: ${error.message}`)
     })
   })
 
