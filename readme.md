@@ -1,4 +1,4 @@
-# standard-markdown
+# standard-markdown [![Build Status](https://travis-ci.org/zeke/standard-markdown.svg?branch=master)](https://travis-ci.org/zeke/standard-markdown)
 
 Test your Markdown files for Standard JavaScript Style™
 
