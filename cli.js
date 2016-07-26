@@ -1,10 +1,11 @@
 #!/usr/bin/env node
+'use strict'
 
-const globby = require('globby')
-const path = require('path')
-const lintFiles = require('.').lintFiles
-const cwd = process.argv.slice(2)[0] || process.cwd()
-let patterns = [
+var globby = require('globby')
+var path = require('path')
+var lintFiles = require('.').lintFiles
+var cwd = process.argv.slice(2)[0] || process.cwd()
+var patterns = [
   '**/*.md',
   '**/*.markdown',
   '!**/.git/**',
@@ -16,22 +17,23 @@ let patterns = [
   '!bundle.js'
 ]
 
-const files = globby.sync(patterns, {cwd: cwd})
-  .map(file => path.resolve(cwd, file))
+var files = globby.sync(patterns, { cwd: cwd }).map(function (file) {
+  return path.resolve(cwd, file)
+})
 
 lintFiles(files, function (err, results) {
   if (err) throw err
 
   // No errors
-  if (results.every(result => result.errors.length === 0)) {
+  if (results.every(function (result) { return result.errors.length === 0 })) {
     process.exit(0)
   }
 
   // Errors!
-  results.forEach(result => {
-    result.errors.forEach(error => {
-      let filepath = path.relative(cwd, result.file)
-      console.log(`${filepath}:${error.line}:${error.column}: ${error.message}`)
+  results.forEach(function (result) {
+    result.errors.forEach(function (error) {
+      var filepath = path.relative(cwd, result.file)
+      console.log(filepath + ':' + error.line + ':' + error.column + ': ' + error.message)
     })
   })
   process.exit(1)

@@ -1,13 +1,15 @@
-const test = require('tape')
-const fs = require('fs')
-const path = require('path')
-const standardMarkdown = require('..')
-const dirty = fs.readFileSync(path.join(__dirname, 'fixtures/dirty.md'), 'utf8')
-const clean = fs.readFileSync(path.join(__dirname, 'fixtures/clean.md'), 'utf8')
+'use strict'
+
+var test = require('tape')
+var fs = require('fs')
+var path = require('path')
+var standardMarkdown = require('..')
+var dirty = fs.readFileSync(path.join(__dirname, 'fixtures/dirty.md'), 'utf8')
+var clean = fs.readFileSync(path.join(__dirname, 'fixtures/clean.md'), 'utf8')
 
 test('standardMarkdown', function (t) {
   standardMarkdown.lintText(dirty, function (err, results) {
-    if (err) throw (err)
+    if (err) throw err
     // console.error(JSON.stringify(results, null, 2))
 
     t.comment('dirty fixture')
@@ -22,14 +24,22 @@ test('standardMarkdown', function (t) {
     t.equal(results[2].line, 20, 'identifies correct line number in first block')
 
     t.comment('every error')
-    t.ok(results.every(result => result.message.length), 'has a `message` property')
-    t.ok(results.every(result => result.line > 0), 'has a `line` property')
-    t.ok(results.every(result => result.column > 0), 'has a `column` property')
-    t.ok(results.every(result => result.severity > 0), 'has a `severity` property')
+    t.ok(results.every(function (result) {
+      return result.message.length
+    }), 'has a `message` property')
+    t.ok(results.every(function (result) {
+      return result.line > 0
+    }), 'has a `line` property')
+    t.ok(results.every(function (result) {
+      return result.column > 0
+    }), 'has a `column` property')
+    t.ok(results.every(function (result) {
+      return result.severity > 0
+    }), 'has a `severity` property')
 
     t.comment('clean fixture')
     standardMarkdown.lintText(clean, function (err, results) {
-      if (err) throw (err)
+      if (err) throw err
       t.equal(results.length, 0, 'has no errors')
       t.end()
     })
