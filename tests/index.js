@@ -3,7 +3,7 @@
 var test = require('tape')
 var fs = require('fs')
 var path = require('path')
-var standardMarkdown = require('..')
+var standardMarkdown = require('../')
 var dirty = fs.readFileSync(path.join(__dirname, 'fixtures/dirty.md'), 'utf8')
 var clean = fs.readFileSync(path.join(__dirname, 'fixtures/clean.md'), 'utf8')
 

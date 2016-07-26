@@ -3,7 +3,7 @@
 
 var globby = require('globby')
 var path = require('path')
-var lintFiles = require('.').lintFiles
+var lintFiles = require('./').lintFiles
 var cwd = process.argv.slice(2)[0] || process.cwd()
 var patterns = [
   '**/*.md',
