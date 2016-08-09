@@ -10,12 +10,12 @@ var blockCloser = /^```$/mg
 
 var standardMarkdown = module.exports = {}
 
-const disabledRules = ['no-undef', 'no-unused-vars', 'no-lone-blocks', 'no-labels']
+var disabledRules = ['no-undef', 'no-unused-vars', 'no-lone-blocks', 'no-labels']
 
 standardMarkdown.lintText = function (text, done) {
   var blocks = extractCodeBlocks(text)
   async.map(blocks, function (block, callback) {
-    const ignoredBlock = `/* eslint-disable ${disabledRules.join(', ')} */
+    var ignoredBlock = `/* eslint-disable ${disabledRules.join(', ')} */
     ` + block
     return standard.lintText(ignoredBlock, callback)
   }, function (err, results) {

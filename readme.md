@@ -30,6 +30,15 @@ All files with `.md` or `.markdown` extension are linted, and the following dire
 - `node_modules`
 - `vendor`
 
+This module disables certain rules that were considered not appropriate for linting JS blocks in markdown. See [#2](https://github.com/zeke/standard-markdown/issues/2) for more information.
+
+Currently we disable the following rules
+
+* [`no-undef`](http://eslint.org/docs/rules/no-undef)  
+* [`no-unused-vars`](http://eslint.org/docs/rules/no-unused-vars)  
+* [`no-lone-blocks`](http://eslint.org/docs/rules/no-lone-blocks)  
+* [`no-labels`](http://eslint.org/docs/2.0.0/rules/no-labels)  
+
 ## Tests
 
 ```sh
