@@ -6,11 +6,27 @@ var path = require('path')
 var standardMarkdown = require('../')
 var dirty = fs.readFileSync(path.join(__dirname, 'fixtures/dirty.md'), 'utf8')
 var clean = fs.readFileSync(path.join(__dirname, 'fixtures/clean.md'), 'utf8')
+var cleanable = fs.readFileSync(path.join(__dirname, 'fixtures/cleanable.md'), 'utf8')
+
+test('standardMarkdownFormat', function (t) {
+  t.comment('cleaning the dirty fixture')
+
+  var cleanText = standardMarkdown.formatText(cleanable)
+
+  standardMarkdown.lintText(cleanText, function (lintErr, results) {
+    if (lintErr) throw lintErr
+
+    t.equal(results.length, 0, 'should remove all linting errors from the cleanable fixture')
+
+    fs.writeFileSync(path.join(__dirname, 'fixtures/cleaned.md'), cleanText)
+
+    t.end()
+  })
+})
 
 test('standardMarkdown', function (t) {
   standardMarkdown.lintText(dirty, function (err, results) {
     if (err) throw err
-    // console.error(JSON.stringify(results, null, 2))
 
     t.comment('dirty fixture')
     t.equal(results.length, 5, 'returns six linting errors')
