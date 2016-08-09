@@ -10,15 +10,23 @@ var blockCloser = /^```$/mg
 
 var standardMarkdown = module.exports = {}
 
+const disabledRules = ['no-undef', 'no-unused-vars', 'no-lone-blocks', 'no-labels']
+
 standardMarkdown.lintText = function (text, done) {
   var blocks = extractCodeBlocks(text)
   async.map(blocks, function (block, callback) {
-    return standard.lintText(block, callback)
+    const ignoredBlock = `/* eslint-disable ${disabledRules.join(', ')} */
+    ` + block
+    return standard.lintText(ignoredBlock, callback)
   }, function (err, results) {
     if (err) return done(err)
     results = results.map(function (r) {
       return r.results.map(function (res) {
-        return res.messages
+        return res.messages.map(function (message) {
+          // We added an extra line to the top of the "file" so we need to remove one here
+          message.line -= 1
+          return message
+        })
       })
     })
     results = flatten(flatten(results))
