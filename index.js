@@ -15,8 +15,7 @@ var disabledRules = ['no-undef', 'no-unused-vars', 'no-lone-blocks', 'no-labels'
 standardMarkdown.lintText = function (text, done) {
   var blocks = extractCodeBlocks(text)
   async.map(blocks, function (block, callback) {
-    var ignoredBlock = `/* eslint-disable ${disabledRules.join(', ')} */
-    ` + block
+    var ignoredBlock = '/* eslint-disable ' + disabledRules.join(', ') + ' */\n' + block
     return standard.lintText(ignoredBlock, callback)
   }, function (err, results) {
     if (err) return done(err)
