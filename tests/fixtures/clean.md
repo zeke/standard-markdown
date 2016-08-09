@@ -12,3 +12,16 @@ There are no linting errors in this file.
 let wibble = 2
 console.log(wibble)
 ```
+
+It should allow use of undefined variables
+
+```javascript
+win.close()
+```
+
+It should allow creation of unused variables
+
+```js
+// `BrowserWindow` is declared but not used
+const {BrowserWindow} = require('electron')
+```
