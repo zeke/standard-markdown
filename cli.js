@@ -1,8 +1,25 @@
 #!/usr/bin/env node
 'use strict'
 
-var program = require('commander')
 var fs = require('fs')
+var path = require('path')
+
+if (process.versions.node[0] === '0') {
+  console.warn('Old version of Node.JS detected, transpiling all node_modules.  THIS COULD TAKE A WHILE')
+  require('babel-register')({
+    ignore: ['node_modules/babel-register']
+  })
+  // Patch the path.isAbsolute method
+  path.isAbsolute = require('path-is-absolute')
+  // Don't ask why.  Just accept that this fixes things (sadpanda)
+  var circularJSONPath = path.resolve(__dirname, 'node_modules/standard/node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/circular-json/build/circular-json.node.js')
+  if (fs.existsSync(circularJSONPath)) {
+    fs.writeFileSync(circularJSONPath, fs.readFileSync(circularJSONPath, 'utf8').replace('this.stringify = stringifyRecursion;\nthis.parse = parseRecursion;', 'module.exports={};module.exports.stringify=stringifyRecursion;module.exports.parse=parseRecursion'))
+  }
+}
+
+
+var program = require('commander')
 var globby = require('globby')
 var path = require('path')
 var standardMarkdown = require('./')
