@@ -29,6 +29,7 @@
     "lodash.flatten": "^4.2.0",
     "lodash.range": "^3.1.5",
     "mkdirp": "^0.5.1",
+    "object-assign": "^4.1.0",
     "path-is-absolute": "^1.0.0",
     "standard": "^8.2.0",
     "standard-format": "^2.2.2"
