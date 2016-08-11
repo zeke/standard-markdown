@@ -11,14 +11,11 @@ var cleanable = fs.readFileSync(path.join(__dirname, 'fixtures/cleanable.md'), '
 test('standardMarkdownFormat', function (t) {
   t.comment('cleaning the dirty fixture')
 
-  var cleanText = standardMarkdown.formatText(cleanable)
-
-  standardMarkdown.lintText(cleanText, function (lintErr, results) {
-    if (lintErr) throw lintErr
+  standardMarkdown.formatText(cleanable, function (cleanErr, results, cleanText) {
+    if (cleanErr) throw cleanErr
 
     t.equal(results.length, 0, 'should remove all linting errors from the cleanable fixture')
-
-    fs.writeFileSync(path.join(__dirname, 'fixtures/cleaned.md'), cleanText)
+    t.equal(cleanable.split('\n').length, cleanText.split('\n').length, 'should keep the same number of lines')
 
     t.end()
   })
@@ -35,7 +32,7 @@ test('standardMarkdown', function (t) {
     t.equal(results[0].line, 6, 'identifies correct line number in first block')
 
     t.equal(results[1].message, 'Extra semicolon.', 'finds errors in second block')
-    t.equal(results[1].line, 20, 'identifies correct line number in first block')
+    t.equal(results[1].line, 20, 'identifies correct line number in second block')
 
     t.comment('every error')
     t.ok(results.every(function (result) {

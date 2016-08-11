@@ -51,13 +51,7 @@ This module also provides the ability to automatically fix some common issues wi
 Fix everything where it is
 
 ```sh
-standard-markdown some/directory --auto-fix
-```
-
-Fix everything and write it to a temporary directory "some/directory_dry_run"
-
-```sh
-standard-markdown some/directory --auto-fix --dry-run
+standard-markdown some/directory --fix
 ```
 
 Once the module has attempted to fix all your issues it will run the linter on the generated files so you can see how much it fixed.
@@ -76,9 +70,7 @@ npm test
 - [globby](https://github.com/sindresorhus/globby): Extends `glob` with support for multiple patterns and exposes a Promise API
 - [lodash.flatten](https://github.com/lodash/lodash): The lodash method `_.flatten` exported as a module.
 - [lodash.range](https://github.com/lodash/lodash): The lodash method `_.range` exported as a module.
-- [mkdirp](https://github.com/substack/node-mkdirp): Recursively mkdir, like `mkdir -p`, but in node.js
 - [standard](https://github.com/feross/standard): JavaScript Standard Style
-- [standard-format](https://github.com/maxogden/standard-format): Converts your code into Standard JavaScript Format
 
 ## Dev Dependencies
 
