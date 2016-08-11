@@ -2,3 +2,7 @@ language: node_js
 node_js:
   - "4"
   - "6"
+
+script:
+  - if [ "${TRAVIS_NODE_VERSION}" != "0.10" ]; then npm run lint; fi
+  - npm test
