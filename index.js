@@ -7,6 +7,8 @@ var flatten = require('lodash.flatten')
 var async = require('async')
 var blockOpener = /^```(js|javascript)$/mg
 var blockCloser = /^```$/mg
+var openingOrphanCurly = /^\/\/ -```(js|javascript)\n\{/mg
+var closingOrphanCurly = /\}\n\/\/ -```/mg
 
 var standardMarkdown = module.exports = {}
 
@@ -14,7 +16,9 @@ var disabledRules = ['no-undef', 'no-unused-vars', 'no-lone-blocks', 'no-labels'
 
 standardMarkdown.lintText = function (text, done) {
   var blocks = extractCodeBlocks(text)
+
   async.map(blocks, function (block, callback) {
+    block = wrapOrphanObjectInParens(block)
     var ignoredBlock = '/* eslint-disable ' + disabledRules.join(', ') + ' */\n' + block
     return standard.lintText(ignoredBlock, callback)
   }, function (err, results) {
@@ -72,4 +76,27 @@ function extractCodeBlock (lines, targetIndex) {
     if (!insideBlock) line = '// -' + line
     return line
   }).join('\n').concat('\n') // standard requires a newline at end of file
+}
+
+/*
+If given code block is an orphan object like this:
+
+```js
+{an: 'object'}
+```
+
+then turn it into this:
+
+```js
+({an: 'object'})
+```
+*/
+function wrapOrphanObjectInParens (block) {
+  if (block.match(openingOrphanCurly) && block.match(closingOrphanCurly)) {
+    return block
+      .replace(openingOrphanCurly, '// -```js\n({')
+      .replace(closingOrphanCurly, '})\n// -```')
+  } else {
+    return block
+  }
 }

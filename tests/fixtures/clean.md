@@ -25,3 +25,18 @@ It should allow creation of unused variables
 // `BrowserWindow` is declared but not used
 const {BrowserWindow} = require('electron')
 ```
+
+It should allow orphan objects:
+
+```js
+{some: 'object'}
+```
+
+and this wrapping kind too:
+
+```js
+{
+  some: 'object',
+  with: 'different whitespace and tabbing'
+}
+```
