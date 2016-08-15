@@ -13,15 +13,13 @@ test('standardMarkdown', function (t) {
     // console.error(JSON.stringify(results, null, 2))
 
     t.comment('dirty fixture')
-    t.equal(results.length, 6, 'returns six linting errors')
+    t.equal(results.length, 5, 'returns six linting errors')
 
-    t.equal(results[0].message, "'foo' is defined but never used", 'finds errors')
+    t.equal(results[0].message, 'Extra semicolon.', 'finds errors in first block')
+    t.equal(results[0].line, 6, 'identifies correct line number in first block')
 
-    t.equal(results[1].message, 'Extra semicolon.', 'finds errors in first block')
-    t.equal(results[1].line, 6, 'identifies correct line number in first block')
-
-    t.equal(results[2].message, 'Extra semicolon.', 'finds errors in second block')
-    t.equal(results[2].line, 20, 'identifies correct line number in first block')
+    t.equal(results[1].message, 'Extra semicolon.', 'finds errors in second block')
+    t.equal(results[1].line, 20, 'identifies correct line number in first block')
 
     t.comment('every error')
     t.ok(results.every(function (result) {
