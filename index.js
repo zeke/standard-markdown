@@ -7,12 +7,8 @@ var flatten = require('lodash.flatten')
 var async = require('async')
 var blockOpener = /^```(js|javascript)$/mg
 var blockCloser = /^```$/mg
-var openingOrphanCurly = /^\/\/ -```(js|javascript)\n\{/mg
-var closingOrphanCurly = /\}\n\/\/ -```/mg
-
-var standardMarkdown = module.exports = {}
-
 var disabledRules = ['no-undef', 'no-unused-vars', 'no-lone-blocks', 'no-labels']
+var standardMarkdown = module.exports = {}
 
 standardMarkdown.lintText = function (text, done) {
   var blocks = extractCodeBlocks(text)
@@ -92,11 +88,8 @@ then turn it into this:
 ```
 */
 function wrapOrphanObjectInParens (block) {
-  if (block.match(openingOrphanCurly) && block.match(closingOrphanCurly)) {
-    return block
-      .replace(openingOrphanCurly, '// -```js\n({')
-      .replace(closingOrphanCurly, '})\n// -```')
-  } else {
-    return block
-  }
+  return block.replace(
+    /\/\/ -```(js|javascript)\n({[\s\S]+})\n\/\/ -```/mg,
+    '// -```js\n($1)\n// -```'
+  )
 }
