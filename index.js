@@ -89,7 +89,7 @@ then turn it into this:
 */
 function wrapOrphanObjectInParens (block) {
   return block.replace(
-    /\/\/ -```(js|javascript)\n({[\s\S]+})\n\/\/ -```/mg,
+    /\/\/ -```(js|javascript)\n([{|\[][\s\S]+[}|\]])\n\/\/ -```/mg,
     '// -```js\n($1)\n// -```'
   )
 }
