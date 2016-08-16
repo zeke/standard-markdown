@@ -40,3 +40,19 @@ and this wrapping kind too:
   with: 'different whitespace and tabbing'
 }
 ```
+
+and arrays:
+
+```js
+[1,2,3]
+```
+
+and wrapped arrays:
+
+```js
+[
+  4,
+  5,
+  6,
+]
+```
