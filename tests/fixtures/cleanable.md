@@ -26,3 +26,34 @@ This non-js code block should be ignored by the cleaner and the linter:
 ```sh
 echo i am a shell command
 ```
+
+It should allow orphan objects:
+
+```js
+{some: 'object'}
+```
+
+and this wrapping kind too:
+
+```js
+{
+  some: 'object',
+  with: 'different whitespace and tabbing'
+}
+```
+
+and arrays:
+
+```js
+[1,2,3]
+```
+
+and wrapped arrays:
+
+```js
+[
+  4,
+  5,
+  6,
+]
+```

@@ -29,7 +29,7 @@ const {BrowserWindow} = require('electron')
 It should allow orphan objects:
 
 ```js
-{some: 'object'}
+{ some: 'object' }
 ```
 
 and this wrapping kind too:
@@ -44,7 +44,7 @@ and this wrapping kind too:
 and arrays:
 
 ```js
-[1,2,3]
+[1, 2, 3]
 ```
 
 and wrapped arrays:
@@ -53,6 +53,6 @@ and wrapped arrays:
 [
   4,
   5,
-  6,
+  6
 ]
 ```
