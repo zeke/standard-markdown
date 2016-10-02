@@ -46,9 +46,8 @@ For more examples of what is and isn't allowed, see the
 
 ### Fixing
 
-This module also provides the ability to automatically fix some common issues with JS snippets (extra semicolons, bad whitespacing, Etc.)
-
-Fix everything where it is
+This module also provides the ability to automatically fix common syntax issues like extra semicolons, bad whitespacing, etc.
+This functionality is provided by [standard](https://github.com/feross/standard#is-there-an-automatic-formatter). 
 
 ```sh
 standard-markdown some/directory --fix
