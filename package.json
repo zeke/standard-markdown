@@ -34,13 +34,5 @@
   },
   "engines": {
     "node": ">=4"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ],
-    "plugins": [
-      "transform-object-assign"
-    ]
   }
 }
