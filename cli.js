@@ -25,6 +25,8 @@ program
   .version(require('./package.json').version)
   .arguments('[cwd]')
   .option('-f, --fix', 'Attempt to fix basic standard JS issues')
+  .option('-p, --pattern [pattern]', 'Glob pattern to match markdown files to lint')
+  .option('-i, --ignore [ignore]', 'Glob pattern to match markdown files to ignore')
   .option('-v, --verbose', 'Verbose mode')
   .action(function (cwdValue) {
     cwd = cwdValue
@@ -32,6 +34,15 @@ program
   .parse(process.argv)
 
 cwd = cwd || process.cwd()
+
+if (program.pattern) {
+  patterns.pop(0)
+  patterns[0] = program.pattern
+}
+
+if (program.ignore) {
+  patterns.push(`!${program.ignore}`)
+}
 
 // The files to run our command against
 var files = globby.sync(patterns, { cwd: cwd }).map(function (file) {
