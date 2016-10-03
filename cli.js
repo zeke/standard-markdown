@@ -23,26 +23,23 @@ var cwd
 
 program
   .version(require('./package.json').version)
-  .arguments('[cwd]')
+  .arguments('[cwd] [patterns...]')
   .option('-f, --fix', 'Attempt to fix basic standard JS issues')
-  .option('-p, --pattern [pattern]', 'Glob pattern to match markdown files to lint')
-  .option('-i, --ignore [ignore]', 'Glob pattern to match markdown files to ignore')
   .option('-v, --verbose', 'Verbose mode')
-  .action(function (cwdValue) {
-    cwd = cwdValue
+  .action(function (cwdValue, patternArgs) {
+    // If cwd is an actual path, set it to be the cwd
+    // Otherwise interpret it as a glob pattern
+    if (fs.existsSync(path.resolve(cwdValue))) {
+      cwd = cwdValue
+    } else {
+      if (cwdValue) {
+        patterns = [cwdValue].concat(patternArgs).concat(patterns.slice(2))
+      }
+    }
   })
   .parse(process.argv)
 
 cwd = cwd || process.cwd()
-
-if (program.pattern) {
-  patterns.pop(0)
-  patterns[0] = program.pattern
-}
-
-if (program.ignore) {
-  patterns.push(`!${program.ignore}`)
-}
 
 // The files to run our command against
 var files = globby.sync(patterns, { cwd: cwd }).map(function (file) {
