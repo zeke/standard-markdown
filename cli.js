@@ -29,7 +29,7 @@ program
   .action(function (cwdValue, patternArgs) {
     // If cwd is an actual path, set it to be the cwd
     // Otherwise interpret it as a glob pattern
-    if (fs.existsSync(path.resolve(cwdValue))) {
+    if (fs.existsSync(path.resolve(cwdValue)) && fs.lstatSync(path.resolve(cwdValue)).isDirectory()) {
       cwd = cwdValue
     } else {
       if (cwdValue) {
