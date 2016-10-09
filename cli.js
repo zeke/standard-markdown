@@ -23,11 +23,19 @@ var cwd
 
 program
   .version(require('./package.json').version)
-  .arguments('[cwd]')
+  .arguments('[cwd] [patterns...]')
   .option('-f, --fix', 'Attempt to fix basic standard JS issues')
   .option('-v, --verbose', 'Verbose mode')
-  .action(function (cwdValue) {
-    cwd = cwdValue
+  .action(function (cwdValue, patternArgs) {
+    // If cwd is an actual path, set it to be the cwd
+    // Otherwise interpret it as a glob pattern
+    if (fs.existsSync(path.resolve(cwdValue)) && fs.lstatSync(path.resolve(cwdValue)).isDirectory()) {
+      cwd = cwdValue
+    } else {
+      if (cwdValue) {
+        patterns = [cwdValue].concat(patternArgs).concat(patterns.slice(2))
+      }
+    }
   })
   .parse(process.argv)
 
