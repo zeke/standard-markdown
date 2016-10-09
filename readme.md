@@ -31,6 +31,17 @@ All files with `.md` or `.markdown` extension are linted, and the following dire
 - `node_modules`
 - `vendor`
 
+If you want to specify which files to lint / which files to ignore you can use glob patterns
+
+```sh
+# This will lint everything in some/directory except everything in some/directory/api
+standard-markdown some/directory **/*.md !api/**/*.md
+
+# You also don't need to specify CWD to use globs
+# This will only lint markdown file in the current directory
+standard-markdown *.md
+```
+
 This module disables certain rules that were considered not appropriate for linting JS blocks in markdown. See [#2](https://github.com/zeke/standard-markdown/issues/2) for more information.
 
 Currently we disable the following rules:
@@ -47,7 +58,7 @@ For more examples of what is and isn't allowed, see the
 ### Fixing
 
 This module also provides the ability to automatically fix common syntax issues like extra semicolons, bad whitespacing, etc.
-This functionality is provided by [standard](https://github.com/feross/standard#is-there-an-automatic-formatter). 
+This functionality is provided by [standard](https://github.com/feross/standard#is-there-an-automatic-formatter).
 
 ```sh
 standard-markdown some/directory --fix
