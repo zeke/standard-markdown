@@ -52,8 +52,8 @@ Currently we disable the following rules:
 * [`no-labels`](http://eslint.org/docs/2.0.0/rules/no-labels)
 
 For more examples of what is and isn't allowed, see the
-[clean](/test/fixtures/clean.md) and
-[dirty](/test/fixtures/dirty.md) test fixtures.
+[clean](/tests/fixtures/clean.md) and
+[dirty](/tests/fixtures/dirty.md) test fixtures.
 
 ### Fixing
 
