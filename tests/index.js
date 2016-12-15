@@ -16,7 +16,7 @@ test('standardMarkdownFormat', function (t) {
 
     t.equal(results.length, 0, 'should remove all linting errors from the cleanable fixture')
     t.equal(cleanable.split('\n').length, cleanText.split('\n').length, 'should keep the same number of lines')
-    t.ok(!/```(js|javascript)\n\(([{|\[][\s\S]+[}|\]])\)\n```/mgi.test(cleanText), 'should remove the magic parenthesis when formatting')
+    t.ok(!/```(js|javascript)\n\(([{|[][\s\S]+[}|\]])\)\n```/mgi.test(cleanText), 'should remove the magic parenthesis when formatting')
 
     t.end()
   })
