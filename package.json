@@ -25,6 +25,7 @@
     "globby": "^6.0.0",
     "lodash.flatten": "^4.2.0",
     "lodash.range": "^3.1.5",
+    "ora": "^1.2.0",
     "standard": "^8.6.0"
   },
   "devDependencies": {
