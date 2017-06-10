@@ -56,3 +56,17 @@ and wrapped arrays:
   6
 ]
 ```
+
+Electron docs have a bunch of non-node-style callbacks that don't have `err` as the first arg:
+
+```javascript
+const {app} = require('electron')
+
+app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
+  if (url === 'https://github.com') {
+    callback(true)
+  } else {
+    callback(false)
+  }
+})
+```
