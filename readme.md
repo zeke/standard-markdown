@@ -42,19 +42,6 @@ standard-markdown some/directory **/*.md !api/**/*.md
 standard-markdown *.md
 ```
 
-This module disables certain rules that were considered not appropriate for linting JS blocks in markdown. See [#2](https://github.com/zeke/standard-markdown/issues/2) for more information.
-
-Currently we disable the following rules:
-
-* [`no-undef`](http://eslint.org/docs/rules/no-undef)  
-* [`no-unused-vars`](http://eslint.org/docs/rules/no-unused-vars)  
-* [`no-lone-blocks`](http://eslint.org/docs/rules/no-lone-blocks)  
-* [`no-labels`](http://eslint.org/docs/2.0.0/rules/no-labels)
-
-For more examples of what is and isn't allowed, see the
-[clean](/tests/fixtures/clean.md) and
-[dirty](/tests/fixtures/dirty.md) test fixtures.
-
 ### Fixing
 
 This module also provides the ability to automatically fix common syntax issues like extra semicolons, bad whitespacing, etc.
@@ -65,6 +52,27 @@ standard-markdown some/directory --fix
 ```
 
 Once the module has attempted to fix all your issues it will run the linter on the generated files so you can see how much it fixed.
+
+## Rules
+
+This module disables certain rules that were considered inappropriate for linting JS blocks:
+
+* [`no-labels`](http://eslint.org/docs/rules/no-labels)
+* [`no-lone-blocks`](http://eslint.org/docs/rules/no-lone-blocks)
+* [`no-undef`](http://eslint.org/docs/rules/no-undef)
+* [`no-unused-expressions`](http://eslint.org/docs/rules/no-unused-expressions)
+* [`no-unused-vars`](http://eslint.org/docs/rules/no-unused-vars)
+* [`standard/no-callback-literal`](http://eslint.org/docs/rules/standard/no-callback-literal)
+
+See 
+[#2](https://github.com/zeke/standard-markdown/issues/2),
+[#18](https://github.com/zeke/standard-markdown/issues/18), and 
+[#19](https://github.com/zeke/standard-markdown/issues/19)
+for reasons.
+
+For more examples of what is and isn't allowed, see the
+[clean](/tests/fixtures/clean.md) and
+[dirty](/tests/fixtures/dirty.md) test fixtures.
 
 ## Tests
 
