@@ -22,7 +22,7 @@
   "dependencies": {
     "async": "^2.0.1",
     "commander": "^2.9.0",
-    "globby": "^6.0.0",
+    "globby": "^6.1.0",
     "lodash.flatten": "^4.2.0",
     "lodash.range": "^3.1.5",
     "ora": "^1.2.0",
