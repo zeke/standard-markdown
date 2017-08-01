@@ -62,7 +62,7 @@ This module disables certain rules that were considered inappropriate for lintin
 * [`no-undef`](http://eslint.org/docs/rules/no-undef)
 * [`no-unused-expressions`](http://eslint.org/docs/rules/no-unused-expressions)
 * [`no-unused-vars`](http://eslint.org/docs/rules/no-unused-vars)
-* [`standard/no-callback-literal`](http://eslint.org/docs/rules/standard/no-callback-literal)
+* [`standard/no-callback-literal`](https://github.com/xjamundx/eslint-plugin-standard#rules-explanations)
 
 See 
 [#2](https://github.com/zeke/standard-markdown/issues/2),
