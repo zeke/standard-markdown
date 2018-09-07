@@ -23,7 +23,7 @@ It should allow creation of unused variables
 
 ```js
 // `BrowserWindow` is declared but not used
-const {BrowserWindow} = require('electron')
+const { BrowserWindow } = require('electron')
 ```
 
 It should allow orphan objects:
@@ -60,7 +60,7 @@ and wrapped arrays:
 Electron docs have a bunch of non-node-style callbacks that don't have `err` as the first arg:
 
 ```javascript
-const {app} = require('electron')
+const { app } = require('electron')
 
 app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
   if (url === 'https://github.com') {
