@@ -20,7 +20,6 @@
   "author": "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)",
   "license": "MIT",
   "dependencies": {
-    "async": "^2.6.1",
     "commander": "^2.18.0",
     "globby": "^8.0.1",
     "lodash.flatten": "^4.4.0",
