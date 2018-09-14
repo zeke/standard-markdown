@@ -83,7 +83,6 @@ npm test
 
 ## Dependencies
 
-- [async](https://github.com/caolan/async): Higher-order functions and common patterns for asynchronous code
 - [commander](https://github.com/tj/commander.js): The complete solution for node.js command-line programs
 - [globby](https://github.com/sindresorhus/globby): Extends `glob` with support for multiple patterns and exposes a Promise API
 - [lodash.flatten](https://github.com/lodash/lodash): The lodash method `_.flatten` exported as a module.
