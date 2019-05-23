@@ -60,9 +60,7 @@ if (program.fix) {
 }
 
 // Lint the files
-standardMarkdown[program.fix ? 'formatFiles' : 'lintFiles'](files, function (err, results) {
-  if (err) throw err
-
+standardMarkdown[program.fix ? 'formatFiles' : 'lintFiles'](files).then((results) => {
   // No errors
   if (results.every(function (result) { return result.errors.length === 0 })) {
     process.exit(0)
@@ -91,4 +89,6 @@ standardMarkdown[program.fix ? 'formatFiles' : 'lintFiles'](files, function (err
 
   console.log('\nThere are ' + totalErrors + ' errors in "' + cwd + '"')
   process.exit(1)
+}).catch((err) => {
+  throw err
 })

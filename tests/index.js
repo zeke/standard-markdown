@@ -1,6 +1,8 @@
 'use strict'
 
-var test = require('tape')
+var tape = require('tape')
+var _test = require('tape-promise').default
+var test = _test(tape)
 var fs = require('fs')
 var path = require('path')
 var standardMarkdown = require('../')
@@ -11,20 +13,18 @@ var cleanable = fs.readFileSync(path.join(__dirname, 'fixtures/cleanable.md'), '
 test('standardMarkdownFormat', function (t) {
   t.comment('cleaning the dirty fixture')
 
-  standardMarkdown.formatText(cleanable, function (cleanErr, results, cleanText) {
-    if (cleanErr) throw cleanErr
-
-    t.equal(results.length, 0, 'should remove all linting errors from the cleanable fixture')
-    t.equal(cleanable.split('\n').length, cleanText.split('\n').length, 'should keep the same number of lines')
-    t.ok(!/```(js|javascript)\n\(([{|[][\s\S]+[}|\]])\)\n```/mgi.test(cleanText), 'should remove the magic parenthesis when formatting')
-
-    t.end()
+  return standardMarkdown.formatText(cleanable).then((data) => {
+    t.equal(data.results.length, 0, 'should remove all linting errors from the cleanable fixture')
+    t.equal(cleanable.split('\n').length, data.outputText.split('\n').length, 'should keep the same number of lines')
+    t.ok(!/```(js|javascript)\n\(([{|[][\s\S]+[}|\]])\)\n```/mgi.test(data.outputText), 'should remove the magic parenthesis when formatting')
+  }).catch((cleanErr) => {
+    throw cleanErr
   })
 })
 
 test('standardMarkdown', function (t) {
-  standardMarkdown.lintText(dirty, function (err, results) {
-    if (err) throw err
+  return standardMarkdown.lintText(dirty).then((data) => {
+    const results = data.results
 
     t.comment('dirty fixture')
     t.equal(results.length, 5, 'returns six linting errors')
@@ -50,10 +50,14 @@ test('standardMarkdown', function (t) {
     }), 'has a `severity` property')
 
     t.comment('clean fixture')
-    standardMarkdown.lintText(clean, function (err, results) {
-      if (err) throw err
+
+    standardMarkdown.lintText(clean).then((data) => {
+      const results = data.results
       t.equal(results.length, 0, 'has no errors')
-      t.end()
+    }).catch((err) => {
+      throw err
     })
+  }).catch((err) => {
+    throw err
   })
 })

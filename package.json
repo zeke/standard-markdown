@@ -29,7 +29,8 @@
   },
   "devDependencies": {
     "tap-spec": "^5.0.0",
-    "tape": "^4.9.1"
+    "tape": "^4.9.1",
+    "tape-promise": "^3.0.0"
   },
   "engines": {
     "node": ">=6"
