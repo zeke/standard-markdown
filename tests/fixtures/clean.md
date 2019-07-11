@@ -9,7 +9,7 @@ console.log('all good here!')
 There are no linting errors in this file.
 
 ```javascript
-let wibble = 2
+const wibble = 2
 console.log(wibble)
 ```
 
