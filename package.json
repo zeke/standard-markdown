@@ -1,6 +1,6 @@
 {
   "name": "standard-markdown",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "Test your Markdown files for Standard JavaScript Style™",
   "main": "index.js",
   "bin": "cli.js",
