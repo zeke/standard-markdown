@@ -20,16 +20,16 @@
   "author": "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.20.0",
-    "globby": "^10.0.1",
+    "commander": "^4.1.0",
+    "globby": "^11.0.0",
     "lodash.flatten": "^4.4.0",
     "lodash.range": "^3.2.0",
-    "ora": "^3.4.0",
-    "standard": "^13.0.0"
+    "ora": "^4.0.3",
+    "standard": "^14.3.1"
   },
   "devDependencies": {
     "tap-spec": "^5.0.0",
-    "tape": "^4.11.0"
+    "tape": "^4.13.0"
   },
   "engines": {
     "node": ">=6"
