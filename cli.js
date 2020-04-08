@@ -64,7 +64,7 @@ standardMarkdown[program.fix ? 'formatFiles' : 'lintFiles'](files, function (err
   if (err) throw err
 
   // No errors
-  if (results.every(function (result) { return result.errors.length === 0 })) {
+  if (!program.fix && results.every(function (result) { return result.errors.length === 0 })) {
     process.exit(0)
   }
 
