@@ -4,7 +4,7 @@
 var fs = require('fs')
 var globby = require('globby')
 var path = require('path')
-var program = require('commander')
+var { program } = require('commander')
 var standardMarkdown = require('./')
 
 var patterns = [
