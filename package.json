@@ -3,7 +3,9 @@
   "version": "6.0.0",
   "description": "Test your Markdown files for Standard JavaScript Style™",
   "main": "index.js",
-  "bin": "cli.js",
+  "bin": {
+    "standard-markdown": "cli.js"
+  },
   "scripts": {
     "test": "node tests/index.js | tap-spec && standard"
   },
@@ -25,7 +27,7 @@
     "lodash.flatten": "^4.4.0",
     "lodash.range": "^3.2.0",
     "ora": "^4.0.3",
-    "standard": "^14.3.1"
+    "standard": "^16.0.3"
   },
   "devDependencies": {
     "tap-spec": "^5.0.0",

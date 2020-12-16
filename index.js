@@ -1,7 +1,7 @@
 'use strict'
 
-var formatter = require('./lib/formatter')
-var linter = require('./lib/linter')
+const formatter = require('./lib/formatter')
+const linter = require('./lib/linter')
 
 module.exports = {
   formatFiles: formatter.formatFiles,
