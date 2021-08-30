@@ -85,7 +85,6 @@ npm test
 
 - [commander](https://github.com/tj/commander.js): The complete solution for node.js command-line programs
 - [globby](https://github.com/sindresorhus/globby): Extends `glob` with support for multiple patterns and exposes a Promise API
-- [lodash.range](https://github.com/lodash/lodash): The lodash method `_.range` exported as a module.
 - [standard](https://github.com/feross/standard): JavaScript Standard Style
 
 ## Dev Dependencies
