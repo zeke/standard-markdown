@@ -64,9 +64,9 @@ This module disables certain rules that were considered inappropriate for lintin
 * [`no-unused-vars`](http://eslint.org/docs/rules/no-unused-vars)
 * [`standard/no-callback-literal`](https://github.com/xjamundx/eslint-plugin-standard#rules-explanations)
 
-See 
+See
 [#2](https://github.com/zeke/standard-markdown/issues/2),
-[#18](https://github.com/zeke/standard-markdown/issues/18), and 
+[#18](https://github.com/zeke/standard-markdown/issues/18), and
 [#19](https://github.com/zeke/standard-markdown/issues/19)
 for reasons.
 
@@ -85,8 +85,6 @@ npm test
 
 - [commander](https://github.com/tj/commander.js): The complete solution for node.js command-line programs
 - [globby](https://github.com/sindresorhus/globby): Extends `glob` with support for multiple patterns and exposes a Promise API
-- [lodash.flatten](https://github.com/lodash/lodash): The lodash method `_.flatten` exported as a module.
-- [lodash.range](https://github.com/lodash/lodash): The lodash method `_.range` exported as a module.
 - [standard](https://github.com/feross/standard): JavaScript Standard Style
 
 ## Dev Dependencies

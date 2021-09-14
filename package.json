@@ -24,8 +24,6 @@
   "dependencies": {
     "commander": "^4.1.0",
     "globby": "^11.0.0",
-    "lodash.flatten": "^4.4.0",
-    "lodash.range": "^3.2.0",
     "ora": "^4.0.3",
     "standard": "^16.0.3"
   },
@@ -34,6 +32,6 @@
     "tape": "^4.13.0"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=11"
   }
 }
